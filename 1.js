@@ -1,15 +1,27 @@
-// Scrivi una funzione chiamata doubleArray che accetta un array e una funzione di callback come argomenti.
-// doubleArray deve applicare la funzione di callback a ciascun elemento dell'array e restituire un nuovo array con i valori trasformati.
-function doubleArray(arr, callback) {
+// Partendo dall'esercizio Le Callback - 5, includi la gestione degli errori. Se la funzione di callback genera un errore, catturalo e gestiscilo.
+// Modificare la funzione performOperation per gestire l'errore e registrare un messaggio di errore.
+
+function performOperation(a, b, callback) {
+    //...
+    if (typeof a === 'number' && typeof b === 'number') {
+        const result = a + b
+        callback(null, result);
+    } else {
+        callback(new Error('Errore'), null)
+    }
+    // result = a + b;
+  
+    // callback(result)
+};
+  
+function displayResult(error, result) {
     //....
-    const newArray = arr.map(callback);
-
-    return newArray;
+    if (error) {
+        console.log(error.message)
+    } else {
+        console.log(result)
+    }
+    
 }
-  function doubleValue(num) {
-    return num * 2;
-}
-
-const numbers = [1, 2, 3, 4, 5];
-const doubledNumbers = doubleArray(numbers, doubleValue);
-console.log(doubledNumbers); // Should output [2, 4, 6, 8, 10]
+  
+performOperation('r', 3, displayResult);
